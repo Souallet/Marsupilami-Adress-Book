@@ -161,15 +161,76 @@ class User extends BaseUser
     }
 
 
-    public function setMyFriendss(Collection $myFriendss)
+    public function setMyFriends(Collection $myFriends)
     {
-        $this->myFriendss = $myFriendss;
+        $this->myFriends = $myFriends;
+
+        return $this;
+    }
+    
+    /**
+     * @return array
+     */
+    public function getMyFriends()
+    {
+       return $this->myFriends->toArray();
+    }
+
+    /**
+     * Add friendsWithMe
+     *
+     * @param \AppBundle\Entity\User $friendsWithMe
+     *
+     * @return User
+     */
+    public function addFriendsWithMe(\AppBundle\Entity\User $friendsWithMe)
+    {
+        $this->friendsWithMe[] = $friendsWithMe;
 
         return $this;
     }
 
-    public function getMyFriends()
+    /**
+     * Remove friendsWithMe
+     *
+     * @param \AppBundle\Entity\User $friendsWithMe
+     */
+    public function removeFriendsWithMe(\AppBundle\Entity\User $friendsWithMe)
     {
-       return $this->myFriendss;
+        $this->friendsWithMe->removeElement($friendsWithMe);
+    }
+
+    /**
+     * Get friendsWithMe
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFriendsWithMe()
+    {
+        return $this->friendsWithMe;
+    }
+
+    /**
+     * Add myFriend
+     *
+     * @param \AppBundle\Entity\User $myFriend
+     *
+     * @return User
+     */
+    public function addMyFriend(\AppBundle\Entity\User $myFriend)
+    {
+        $this->myFriends[] = $myFriend;
+
+        return $this;
+    }
+
+    /**
+     * Remove myFriend
+     *
+     * @param \AppBundle\Entity\User $myFriend
+     */
+    public function removeMyFriend(\AppBundle\Entity\User $myFriend)
+    {
+        $this->myFriends->removeElement($myFriend);
     }
 }
