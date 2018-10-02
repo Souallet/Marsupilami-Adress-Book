@@ -19,27 +19,36 @@
             <span class="badge badge-secondary badge-pill"> {{ friends | length }}</span>
           </h4>
 
-          <form class="card p-2">
+          {{ form_start(addForm) }}
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-              <div class="input-group-append">
+              {{ form_widget(addForm.username, { 'attr': {'class': 'form-control'} }) }}
+              <div class="input-group-append">           
                 <button type="submit" class="btn btn-secondary">Ajouter</button>
               </div>
             </div>
-          </form>
+          {{ form_end(addForm) }}
 
           </br>
 
           <ul class="list-group mb-3">
 
           {% for friend in friends %}
+
               <li class="list-group-item d-flex justify-content-between lh-condensed">
                 <div>
                   <h6 class="my-0">{{ friend.username }}</h6>
                   <small class="text-muted">{{ friend.email }}</small>
                 </div>
-                <span class="text-muted"> {{ friend.age }} ans </span>
+                
+                <span class="text-muted"> 
+                {{ form_start(deleteForms[friend.id]) }}
+                    <button type="submit" class="btn btn-small">
+                      <span class="text-muted"> Supprimer</span>
+                    </button>
+                {{ form_end(deleteForms[friend.id]) }}
+                </span>
               </li>
+          
           {% endfor %}
             
           </ul>
